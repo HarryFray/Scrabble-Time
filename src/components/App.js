@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Player from './Player';
+import Timer from './Timer';
 
 class App extends Component {
   render() {
     return (
       <Wrapper>
+        <Timer />
         <Nav />
         <Game>
           <Player />
