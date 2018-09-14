@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import Player from './Player';
 import Timer from './Timer';
 
 class App extends Component {
   render() {
+    console.log(this.props);
     return (
       <Wrapper>
         <Timer />
@@ -18,7 +20,9 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(state => ({
+  state: state
+}))(App);
 
 const Wrapper = styled.div`
   height: 900px;

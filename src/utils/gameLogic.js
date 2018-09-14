@@ -1,3 +1,8 @@
+export function getRandomLetter(chars) {
+  let randIndex = Math.floor(Math.random() * chars.length);
+  return chars[randIndex];
+}
+
 export function generateRandomLetters() {
   let consonants = 'BCDFGHJKLMNPQRSTVWXZ';
   let vowels = 'AEIOUY';
@@ -5,19 +10,14 @@ export function generateRandomLetters() {
   let letters = [];
   for (let i = 0; i < 9; i++) {
     if (i < 2) {
-      letters.push(this.getRandomLetter(vowels));
+      letters.push(getRandomLetter(vowels));
     } else if (i < 4) {
-      letters.push(this.getRandomLetter(consonants));
+      letters.push(getRandomLetter(consonants));
     } else {
-      letters.push(this.getRandomLetter(allLetters));
+      letters.push(getRandomLetter(allLetters));
     }
   }
   return letters;
-}
-
-export function getRandomLetter(chars) {
-  let randIndex = Math.floor(Math.random() * chars.length);
-  return chars[randIndex];
 }
 
 export function checkIfWordInLetters(word) {
