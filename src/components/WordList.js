@@ -3,7 +3,13 @@ import styled from 'styled-components';
 
 class WordList extends Component {
   render() {
-    return <Wrapper>This is a word list ;)</Wrapper>;
+    return (
+      <Wrapper>
+        {this.props.words.map(word => {
+          return <li key={word}>{word}</li>;
+        })}
+      </Wrapper>
+    );
   }
 }
 

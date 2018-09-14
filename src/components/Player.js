@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import WordList from './WordList';
+import { connect } from 'react-redux';
+import { addWord } from '../actions/words';
 
 class Player extends Component {
   handleEnter(e) {
     if (e.key === 'Enter') {
       console.log(this.input.value);
+      this.props.dispatch(addWord(this.input.value));
       this.input.value = '';
     }
   }
@@ -13,7 +16,7 @@ class Player extends Component {
   render() {
     return (
       <Wrapper>
-        <WordList />
+        <WordList words={this.props.words} />
         <input
           type="text"
           placeholder="Word"
@@ -25,7 +28,9 @@ class Player extends Component {
   }
 }
 
-export default Player;
+export default connect(state => ({
+  words: state.words
+}))(Player);
 
 const Wrapper = styled.div`
   flex: 1;

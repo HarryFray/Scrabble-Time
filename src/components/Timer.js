@@ -13,17 +13,16 @@ class Timer extends Component {
     };
   }
 
-  handleTimerStart() {
+  handleStartGame() {
     if (!this.state.timerIsRunning) {
       this.props.dispatch(handleNewGame());
-      this.setState({ message: '', time: 10, timerIsRunning: true });
+      this.setState({ message: '', time: 60, timerIsRunning: true });
       var countdown = setInterval(() => {
         this.setState(prevState => {
           return { state: prevState.time-- };
         });
         if (this.state.time === 0) {
           clearInterval(countdown);
-          console.log('from timer', this.props);
           this.setState({
             message: 'TIME IS UP!',
             timerIsRunning: false,
@@ -37,7 +36,7 @@ class Timer extends Component {
   render() {
     return (
       <Wrapper>
-        <button onClick={this.handleTimerStart.bind(this)}>NEW GAME</button>
+        <button onClick={this.handleStartGame.bind(this)}>NEW GAME</button>
         <div>{this.state.time}</div>
         <div>{this.state.message}</div>
       </Wrapper>

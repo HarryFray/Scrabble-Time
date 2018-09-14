@@ -20,10 +20,10 @@ export function generateRandomLetters() {
   return letters;
 }
 
-export function checkIfWordInLetters(word) {
+export function checkIfWordInLetters(word, letters) {
   let bigWord = word.toUpperCase();
   for (let i = 0; i < word.length; i++) {
-    if (!this.letters.includes(bigWord[i])) return false;
+    if (!letters.includes(bigWord[i])) return false;
   }
   return true;
 }
