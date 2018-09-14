@@ -7,29 +7,35 @@ import { addWord } from '../actions/words';
 class Player extends Component {
   handleEnter(e) {
     if (e.key === 'Enter') {
-      console.log(this.input.value);
       this.props.dispatch(addWord(this.input.value));
       this.input.value = '';
     }
   }
 
+  displayWhenGameInSesion() {
+    if (this.props.gameInSession) {
+      return (
+        <div>
+          <WordList words={this.props.words} />
+          <input
+            type="text"
+            placeholder="Word"
+            ref={input => (this.input = input)}
+            onKeyPress={this.handleEnter.bind(this)}
+          />
+        </div>
+      );
+    }
+  }
+
   render() {
-    return (
-      <Wrapper>
-        <WordList words={this.props.words} />
-        <input
-          type="text"
-          placeholder="Word"
-          ref={input => (this.input = input)}
-          onKeyPress={this.handleEnter.bind(this)}
-        />
-      </Wrapper>
-    );
+    return <Wrapper>{this.displayWhenGameInSesion()}</Wrapper>;
   }
 }
 
 export default connect(state => ({
-  words: state.words
+  words: state.words,
+  gameInSession: state.gameInSession
 }))(Player);
 
 const Wrapper = styled.div`

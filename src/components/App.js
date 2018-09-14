@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <Wrapper>
         <Timer />
-        <Nav />
+        <Nav>{this.props.letters.join('')}</Nav>
         <Game>
           <Player />
           <Player />
@@ -21,7 +21,7 @@ class App extends Component {
 }
 
 export default connect(state => ({
-  state: state
+  letters: state.game
 }))(App);
 
 const Wrapper = styled.div`

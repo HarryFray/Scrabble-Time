@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { handleNewGame } from '../actions/game';
+import { gameToggle } from '../actions/gameOn';
 
 class Timer extends Component {
   constructor() {
@@ -15,6 +16,7 @@ class Timer extends Component {
 
   handleStartGame() {
     if (!this.state.timerIsRunning) {
+      this.props.dispatch(gameToggle());
       this.props.dispatch(handleNewGame());
       this.setState({ message: '', time: 60, timerIsRunning: true });
       var countdown = setInterval(() => {
@@ -22,6 +24,7 @@ class Timer extends Component {
           return { state: prevState.time-- };
         });
         if (this.state.time === 0) {
+          this.props.dispatch(gameToggle());
           clearInterval(countdown);
           this.setState({
             message: 'TIME IS UP!',
